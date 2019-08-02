@@ -76,8 +76,8 @@ customer4.save()
 
 # film1.delete()
 
-customer1.funds = 10
-customer1.update()
+# customer1.funds = 10
+# customer1.update()
 
 binding.pry
 nil
