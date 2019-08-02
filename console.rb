@@ -48,21 +48,21 @@ customer1 = Customer.new(
 customer2 = Customer.new(
   {
     'name' => 'Alexander Robertson',
-    'funds' => 100
+    'funds' => 325
   }
 )
 
 customer3 = Customer.new(
   {
     'name' => 'Joe Halliwell',
-    'funds' => 100
+    'funds' => 1000
   }
 )
 
 customer4 = Customer.new(
   {
     'name' => 'Marta Tycinska',
-    'funds' => 100
+    'funds' => 750
   }
 )
 
@@ -75,6 +75,9 @@ customer4.save()
 # film1.update()
 
 # film1.delete()
+
+customer1.funds = 10
+customer1.update()
 
 binding.pry
 nil
