@@ -13,7 +13,12 @@ class Customer
     values = [@name, @funds]
     result = SqlRunner.run(sql, values).first()
     @id = result['id'].to_i()
-  end 
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
 
 
 end
