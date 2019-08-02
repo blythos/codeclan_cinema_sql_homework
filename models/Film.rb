@@ -8,14 +8,14 @@ class Film
   def initialize(film)
     @id = film['id'].to_i if film['id']
     @title = film['title']
-    @price = film['price'].to_i
+    @price = film['price'].to_i()
   end
 
   def save()
     sql = "INSERT INTO films (title, price) VALUES ($1, $2) RETURNING id"
     values = [@title, @price]
-    result = SqlRunner.run(sql, values).first
-    @id = result['id'].to_i
+    result = SqlRunner.run(sql, values).first()
+    @id = result['id'].to_i()
   end
 
   def self.delete_all()
@@ -35,5 +35,12 @@ class Film
     values = [@title, @price, @id]
     SqlRunner.run(sql, values)
   end
+
+  def self.all()
+    sql = "SELECT * FROM films"
+    films = SqlRunner.run(sql)
+    return films.map { |film| Film.new(film) }
+  end
+
 
 end
