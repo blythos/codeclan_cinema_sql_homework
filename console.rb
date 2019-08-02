@@ -1,6 +1,8 @@
 require('pry-byebug')
 require_relative('models/Film.rb')
 
+Film.delete_all()
+
 film1 = Film.new(
   {
     'title' => 'The Room',
