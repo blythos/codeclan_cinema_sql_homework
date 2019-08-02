@@ -6,16 +6,16 @@ class Customer
   attr_reader :id
 
   def initialize(customer)
-    @id = customer['id'] if customer['id']
+    @id = customer['id'].to_i() if customer['id']
     @name = customer['name']
-    @funds = customer['funds']
+    @funds = customer['funds'].to_i()
   end
 
   def save()
     sql = "INSERT INTO customers (name, funds) VALUES ($1, $2) RETURNING id"
     values = [@name, @funds]
-    result = SqlRunner.run(sql, values).first()
-    @id = result['id'].to_i()
+    customer_hash = SqlRunner.run(sql, values).first()
+    @id = customer_hash['id'].to_i()
   end
 
   def self.delete_all()

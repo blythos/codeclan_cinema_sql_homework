@@ -14,8 +14,8 @@ class Film
   def save()
     sql = "INSERT INTO films (title, price) VALUES ($1, $2) RETURNING id"
     values = [@title, @price]
-    result = SqlRunner.run(sql, values).first()
-    @id = result['id'].to_i()
+    film_hash = SqlRunner.run(sql, values).first()
+    @id = film_hash['id'].to_i()
   end
 
   def self.delete_all()
