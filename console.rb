@@ -39,5 +39,7 @@ film4.save()
 # film1.title = 'The Disaster Artist'
 # film1.update()
 
+# film1.delete()
+
 binding.pry
 nil
