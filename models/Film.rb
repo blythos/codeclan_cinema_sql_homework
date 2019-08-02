@@ -1,3 +1,5 @@
+require_relative("../db/sql_runner.rb")
+
 class Film
 
   def initialize(film)
@@ -6,4 +8,12 @@ class Film
     @price = film['price'].to_i
   end
 
+  def save()
+    sql = "INSERT INTO films (title, price) VALUES ($1, $2) RETURNING id"
+    values = [@title, @price]
+    result = SqlRunner.run(sql, values).first
+    @id = result['id'].to_i
+  end
+
+  
 end
