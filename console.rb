@@ -3,6 +3,7 @@ require_relative('models/Film.rb')
 require_relative('models/Customer.rb')
 require_relative('models/Ticket.rb')
 
+Ticket.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
