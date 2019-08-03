@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner.rb")
+require_relative("./Screening.rb")
 
 class Film
 
@@ -60,7 +61,16 @@ class Film
     return customers.count()
   end
 
-
-
+  def screenings()
+    sql = "SELECT * FROM screenings INNER JOIN tickets ON tickets.screening_id = screenings.id WHERE screenings.film_id =$1"
+    values = [@id]
+    screenings_hash = SqlRunner.run(sql, values)
+    return screenings_hash.map { |screening| Screening.new(screening) }
+  end
+  #
+  # def most_popular_screening()
+  #   screening_times = screenings.map { |screening| screening.screening_time }
+  #   return screening_times.mode()
+  # end
 
 end

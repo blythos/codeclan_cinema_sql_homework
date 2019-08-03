@@ -47,6 +47,6 @@ class Screening
     values = [id]
     screening_hash = SqlRunner.run(sql, values).first
     return Screening.new(screening_hash)
-  end 
+  end
 
 end
