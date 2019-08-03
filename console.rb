@@ -154,5 +154,8 @@ ticket9.save()
 # customer1.funds = 10
 # customer1.update()
 
+# ticket1.customer_id = customer4.id
+# ticket1.update()
+
 binding.pry
 nil
