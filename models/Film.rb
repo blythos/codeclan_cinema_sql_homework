@@ -67,10 +67,11 @@ class Film
     screenings_hash = SqlRunner.run(sql, values)
     return screenings_hash.map { |screening| Screening.new(screening) }
   end
-  #
-  # def most_popular_screening()
-  #   screening_times = screenings.map { |screening| screening.screening_time }
-  #   return screening_times.mode()
-  # end
+
+  def most_popular_screening()
+    screenings = screenings()
+    screening_times = screenings.map { |screening| screening.screening_time }
+    return screening_times.max_by { |time| screening_times.count(time) }
+  end
 
 end
