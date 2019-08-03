@@ -19,4 +19,12 @@ class Ticket
     sql = "DELETE FROM tickets"
     SqlRunner.run(sql)
   end
+
+  def self.find(id)
+    sql = "SELECT * FROM tickets WHERE id = $1"
+    values = [id]
+    ticket_hash = SqlRunner.run(sql, values).first
+    return Ticket.new(ticket_hash)
+  end
+
 end
