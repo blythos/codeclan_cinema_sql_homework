@@ -2,6 +2,7 @@ require('pry-byebug')
 require_relative('models/Film.rb')
 require_relative('models/Customer.rb')
 require_relative('models/Ticket.rb')
+require_relative('models/Screening.rb')
 
 Ticket.delete_all()
 Film.delete_all()
@@ -40,6 +41,52 @@ film2.save()
 film3.save()
 film4.save()
 
+screening1 = Screening.new(
+  {
+    'screening_time' => "10:00",
+    'available_tickets' => 10,
+    'film_id' => film1.id
+  }
+)
+
+screening2 = Screening.new(
+  {
+    'screening_time' => "14:00",
+    'available_tickets' => 8,
+    'film_id' => film1.id
+  }
+)
+
+screening3 = Screening.new(
+  {
+    'screening_time' => "12:00",
+    'available_tickets' => 14,
+    'film_id' => film2.id
+  }
+)
+
+screening4 = Screening.new(
+  {
+    'screening_time' => "09:00",
+    'available_tickets' => 5,
+    'film_id' => film3.id
+  }
+)
+
+screening5 = Screening.new(
+  {
+    'screening_time' => "19:00",
+    'available_tickets' => 12,
+    'film_id' => film4.id
+  }
+)
+
+screening1.save()
+screening2.save()
+screening3.save()
+screening4.save()
+screening5.save()
+
 customer1 = Customer.new(
   {
     'name' => 'Tommy Wiseau',
@@ -76,63 +123,63 @@ customer4.save()
 ticket1 = Ticket.new(
   {
     'customer_id' => customer1.id,
-    'film_id' => film1.id
+    'screening_id' => screening1.id
   }
 )
 
 ticket2 = Ticket.new(
   {
     'customer_id' => customer1.id,
-    'film_id' => film2.id
+    'screening_id' => screening3.id
   }
 )
 
 ticket3 = Ticket.new(
   {
     'customer_id' => customer2.id,
-    'film_id' => film1.id
+    'screening_id' => screening2.id
   }
 )
 
 ticket4 = Ticket.new(
   {
     'customer_id' => customer3.id,
-    'film_id' => film3.id
+    'screening_id' => screening4.id
   }
 )
 
 ticket5 = Ticket.new(
   {
     'customer_id' => customer3.id,
-    'film_id' => film3.id
+    'screening_id' => screening5.id
   }
 )
 
 ticket6 = Ticket.new(
   {
     'customer_id' => customer4.id,
-    'film_id' => film1.id
+    'screening_id' => screening1.id
   }
 )
 
 ticket7 = Ticket.new(
   {
     'customer_id' => customer4.id,
-    'film_id' => film2.id
+    'screening_id' => screening3.id
   }
 )
 
 ticket8 = Ticket.new(
   {
     'customer_id' => customer4.id,
-    'film_id' => film3.id
+    'screening_id' => screening4.id
   }
 )
 
 ticket9 = Ticket.new(
   {
     'customer_id' => customer4.id,
-    'film_id' => film4.id
+    'screening_id' => screening5.id
   }
 )
 
