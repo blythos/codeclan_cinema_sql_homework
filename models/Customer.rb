@@ -64,4 +64,9 @@ class Customer
     return tickets.map { |ticket| Ticket.new(ticket) }
   end
 
+  def ticket_count()
+    tickets = tickets()
+    return tickets.count()
+  end 
+
 end
