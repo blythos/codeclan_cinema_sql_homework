@@ -62,4 +62,11 @@ class Customer
     return tickets.count()
   end
 
+  def buy_tickets()
+    films = films()
+    total = films.inject(0) { |sum, film| sum + film.price }
+    @funds = @funds - total
+    update()
+  end
+
 end
