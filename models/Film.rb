@@ -57,6 +57,7 @@ class Film
   end
 
   def viewer_count()
+    # You can also get this information as an SQL query using COUNT(), but this code is cleaner than putting together another long query. However, if customers() was bringing back a lot of data, it would make more sense to use a query string here instead.
     customers = customers()
     return customers.count()
   end

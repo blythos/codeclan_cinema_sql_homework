@@ -63,6 +63,7 @@ class Customer
   end
 
   def buy_tickets()
+    # You could add an if statement here to ensure the customer has enough money to buy the tickets, or for the sake of simplicity we could assume the customer has an overdraft.
     films = films()
     total = films.inject(0) { |sum, film| sum + film.price }
     @funds = @funds - total

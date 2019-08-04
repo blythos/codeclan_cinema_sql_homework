@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner.rb")
+require_relative("./Ticket.rb")
 
 class Screening
 
@@ -25,8 +26,8 @@ class Screening
   end
 
   def update()
-    sql = "UPDATE screenings SET (screening_time, available_tickets, film id) = ($1, $2, $3) WHERE id = $4"
-    values = [@id]
+    sql = "UPDATE screenings SET (screening_time, available_tickets, film_id) = ($1, $2, $3) WHERE id = $4"
+    values = [@screening_time, @available_tickets, @film_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -47,6 +48,20 @@ class Screening
     values = [id]
     screening_hash = SqlRunner.run(sql, values).first
     return Screening.new(screening_hash)
+  end
+
+  def tickets()
+    sql = "SELECT tickets.* FROM tickets WHERE screening_id = $1"
+    values = [@id]
+    tickets = SqlRunner.run(sql, values)
+    return tickets.map { |ticket| Ticket.new(ticket) }
+  end
+
+  def sell_tickets()
+    # This decreases the amount of available tickets available for a screening.
+    tickets = tickets()
+    @available_tickets = @available_tickets - tickets.count()
+    update()
   end
 
 end
