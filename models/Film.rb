@@ -69,9 +69,14 @@ class Film
   end
 
   def most_popular_screening()
-    screenings = screenings()
-    screening_times = screenings.map { |screening| screening.screening_time }
-    return screening_times.max_by { |time| screening_times.count(time) }
+    sql = "SELECT screenings.*, COUNT(screening_time) FROM screenings INNER JOIN tickets ON tickets.screening_id = screenings.id GROUP BY screenings.id HAVING screenings.film_id = $1 ORDER BY count DESC LIMIT 1"
+    values = [@id]
+    screening_hash = SqlRunner.run(sql, values).first()
+    return screening_hash['screening_time']
+    # Here's a way of doing it that involves existing functions and doesn't require such a torturous SQL query.
+    # screenings = screenings()
+    # screening_times = screenings.map { |screening| screening.screening_time }
+    # return screening_times.max_by { |time| screening_timesd.count(time) }
   end
 
 end
